@@ -1,15 +1,23 @@
 package com.example.springboottutorial.entities;
 
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Product implements Serializable {
     @Serial
     private  static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Product(){
